@@ -118,5 +118,103 @@ class NewsApi {
     }
     return [];
   }
+  //Channel functions 
+   static const String bbcNews='https://saurav.tech/NewsAPI/everything/bbc-news.json';
+  static const String cnnNews='https://saurav.tech/NewsAPI/everything/cnn.json';
+  static const String foxNews='https://saurav.tech/NewsAPI/everything/fox-news.json';
+    static const String googleNews='https://saurav.tech/NewsAPI/sources.json';
 
+
+
+  //   static Future<List<NewsArticle>> getTopNewsBbc() async {
+  //   int maxtries = 3;
+  //   int mintries = 0;
+    
+  //   while (maxtries > mintries) {
+  //     try {
+  //       final response = await http.get(Uri.parse(bbcNews));
+  //       if (response.statusCode == 200) {
+  //         final List<dynamic> data = jsonDecode(response.body)['articles'];
+  //         return data.map((json) => NewsArticle.fromJson(json)).toList().cast<NewsArticle>();
+  //       }
+  //     } catch (e) {
+  //       print('Error loading the data');
+  //     }
+  //     mintries++;
+  //   }
+  //   return [];
+  // }
+  //   static Future<List<NewsArticle>> getTopNewsCnn() async {
+  //   int maxtries = 3;
+  //   int mintries = 0;
+    
+  //   while (maxtries > mintries) {
+  //     try {
+  //       final response = await http.get(Uri.parse(cnnNews));
+  //       if (response.statusCode == 200) {
+  //         final List<dynamic> data = jsonDecode(response.body)['articles'];
+  //         return data.map((json) => NewsArticle.fromJson(json)).toList().cast<NewsArticle>();
+  //       }
+  //     } catch (e) {
+  //       print('Error loading the data');
+  //     }
+  //     mintries++;
+  //   }
+  //   return [];
+  // }
+  //     static Future<List<NewsArticle>> getTopNewsFox() async {
+  //   int maxtries = 3;
+  //   int mintries = 0;
+    
+  //   while (maxtries > mintries) {
+  //     try {
+  //       final response = await http.get(Uri.parse(foxNews));
+  //       if (response.statusCode == 200) {
+  //         final List<dynamic> data = jsonDecode(response.body)['articles'];
+  //         return data.map((json) => NewsArticle.fromJson(json)).toList().cast<NewsArticle>();
+  //       }
+  //     } catch (e) {
+  //       print('Error loading the data');
+  //     }
+  //     mintries++;
+  //   }
+  //   return [];
+  // }
+  //       static Future<List<NewsArticle>> getGoogleNewsFox() async {
+  //   int maxtries = 3;
+  //   int mintries = 0;
+    
+  //   while (maxtries > mintries) {
+  //     try {
+  //       final response = await http.get(Uri.parse(foxNews));
+  //       if (response.statusCode == 200) {
+  //         final List<dynamic> data = jsonDecode(response.body)['articles'];
+  //         return data.map((json) => NewsArticle.fromJson(json)).toList().cast<NewsArticle>();
+  //       }
+  //     } catch (e) {
+  //       print('Error loading the data');
+  //     }
+  //     mintries++;
+  //   }
+  //   return [];
+  // }
+
+      static Future<List<NewsArticle>> getAllChannelsNews(String url) async {
+    int maxtries = 3;
+    int mintries = 0;
+    
+    while (maxtries > mintries) {
+      try {
+        final response = await http.get(Uri.parse(url));
+        if (response.statusCode == 200) {
+          final List<dynamic> data = jsonDecode(response.body)['articles'];
+          return data.map((json) => NewsArticle.fromJson(json)).toList().cast<NewsArticle>();
+        }
+      } catch (e) {
+        print('Error loading the data');
+      }
+      mintries++;
+    }
+    return [];
+  }
 }
